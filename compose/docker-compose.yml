@@ -1,0 +1,16 @@
+    version: '3'
+    services:
+        container-server:
+            build:
+                context: ./server
+                dockerfile: Dockerfile  
+        container-tests:
+            build:
+                context: ./tests
+                dockerfile: Dockerfile    
+            volumes:
+            - ./output:/tmp/tests/results
+            depends_on:
+                - container-server
+            # stdin_open: true
+            # tty: true
